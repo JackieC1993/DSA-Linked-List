@@ -200,7 +200,26 @@ delete2(dataProp){
         // Assign node's next prop to be this.head
         // Reassign this.head to be node
     // }
+    addToFront() {
+        //Assign node's next prop to be this.head
+        //Reassign this.head to be node
+        this.head = currentNode.next
+        currentNode = currentNode.next
 
+
+    }
+    //Initialize an empty array
+    toArray() {
+    let arryOfData = []
+    let currentNode = this.head
+    //Iterate through all the nodes, and push the data from each node
+    
+        while (currentNode) {
+            arryOfData.push(currentNode.data)
+            currentNode = currentNode.next
+        }
+        return arryOfData
+    }
     // toArray(){
         // Initialize an empty arr
         // Iterate through all the nodes, and push the data from each node to the array
@@ -218,6 +237,26 @@ delete2(dataProp){
 
         // 4. Reassign this.head to be the first element in the reversedNodes array
     // }
+    isDuplicate(dataProp) {
+        let prevNode = this.head
+        let currentNode = this?.head.next
+
+        while (currentNode) {
+            if (currentNode.data === dataProp) {
+                let currentNode = currentNode.next
+                let prevNode = prevNode.next
+            }
+
+            if (currentNode.data === prevNode.data) {
+                return true
+
+            } else {
+                currentNode = currentNode.next
+                prevNode = prevNode.next
+            }
+        }
+        return false
+    }
 }
 
 const list = new LinkedList()
