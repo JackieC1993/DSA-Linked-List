@@ -9,7 +9,7 @@ class Node {
 const node1 = new Node(7)
 const node2 = new Node(10)
 const node3 = new Node(15)
-
+const node4 = new Node(23)
 // node1.next = node2
 
 // Easy way to link node3 to node2
@@ -171,7 +171,31 @@ class LinkedList {
             currentNode = currentNode.next
         }
     }
+delete2(dataProp){
+    // two pointers: one points at the previous node , and one points at the currentNode, so if the the  currentNode's data matches the dataProp then we can reassign the prevNode's next property
+    let prevNode = this.head
+    let currentNode = this.head?.next 
+//checks if this,head is the node we want to remove, and if so we reassign this.head  to be the next node in the list
+    if (prevNode === dataProp){
+        this.head = currentNode
+    }else if (currentNode.data === dataProp){
+        prevNode.next = currentNode.next
+    } else{
+        while (currentNode){
+            //reassign prevnode to be the next node
+            prevNode = currentNode
+            // reassign currentNode to be the next node(one that comes after it)
+            currentNode = currentNode.next
 
+            // check if currentnode's data is equal to the next prop
+            if(currentNode?.data === dataProp){
+                // if it is , remove the currentNode by connecting the prevNode to the currentNode's next property
+             prevNode.next = currentNode.next
+             break;
+            }
+        }
+ }
+}
     // addToFront(node){
         // Assign node's next prop to be this.head
         // Reassign this.head to be node
@@ -200,10 +224,10 @@ const list = new LinkedList()
 list.insert(node1)
 list.insert(node2)
 list.insert(node3)
-
+list.insert(node4)
 // list.clear()
 
-list.delete(15)
+list.delete2(7)
 console.log(list)
 // console.log(list.getFirst())
 // console.log(list.getLast())
